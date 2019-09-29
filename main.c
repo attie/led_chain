@@ -54,7 +54,6 @@ int main(void) {
 			asm("nop;");
 		}
 
-		CHAIN_SET(1);
 		LED_SET(1);
 	}
 }
