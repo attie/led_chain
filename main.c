@@ -27,11 +27,8 @@ int main(void) {
 	uint32_t delay;
 	uint32_t i;
 
-	enum state_color color1;
-	enum state_color color2;
-
-	color1 = COL_OFF;
-	color2 = COL_CYAN;
+	enum state_color color1 = COL_RED;
+	enum state_color color2 = COL_CYAN;
 
 	for (;;) {
 		color_inc(&color1);
