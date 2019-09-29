@@ -23,6 +23,22 @@ void SystemInit(void) {
 	sysclk_init();
 }
 
+static inline void run_led_1(enum state_color *color) {
+	color_inc(color);
+
+	CHAIN_ADDR_1();
+	color_tx(*color);
+	CHAIN_END();
+}
+
+static inline void run_led_2(enum state_color *color) {
+	color_inc(color);
+
+	CHAIN_ADDR_2();
+	color_tx(*color);
+	CHAIN_END();
+}
+
 int main(void) {
 	uint32_t delay;
 	uint32_t i;
@@ -30,11 +46,11 @@ int main(void) {
 	enum state_color color1 = COL_RED;
 	enum state_color color2 = COL_CYAN;
 
+	run_led_1(&color1);
+	run_led_2(&color2);
+
 	for (;;) {
-		color_inc(&color1);
-		CHAIN_ADDR_1();
-		color_tx(color1);
-		CHAIN_END();
+		run_led_1(&color1);
 
 		for (i = 0; i < 0x1fffff; i++) {
 			asm("nop;");
@@ -42,10 +58,7 @@ int main(void) {
 
 		LED_SET(0);
 
-		color_inc(&color2);
-		CHAIN_ADDR_2();
-		color_tx(color2);
-		CHAIN_END();
+		run_led_2(&color2);
 
 		for (i = 0; i < 0x1fffff; i++) {
 			asm("nop;");
