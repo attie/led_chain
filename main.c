@@ -19,8 +19,19 @@
 #include "color.h"
 
 void SystemInit(void) {
+	uint32_t delay;
+
 	gpio_init();
 	sysclk_init();
+
+	/* there must be a period of "high" signal before the first command is issued,
+	 * otherwise it will be ignored / mis-interpreted... I'm not sure if this is
+	 * because the LEDs require startup current, or (I think more likely), the
+	 * start of the command is triggered by a falling edge */
+	CHAIN_SET(1);
+	for (delay = 0; delay < 0xff; delay++) {
+		asm("nop;");
+	}
 }
 
 static inline void run_led_1(enum state_color *color) {
