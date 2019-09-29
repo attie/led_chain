@@ -25,9 +25,8 @@ inline void color_tx(enum state_color color) {
 }
 
 inline void color_inc(enum state_color *color) {
-	if (*color >= COL_WHITE) {
-		*color = COL_OFF;
-	} else {
-		*color += 1;
+	*color += 1;
+	if (*color == COL_EOL) {
+		*color = 0;
 	}
 }

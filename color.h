@@ -10,6 +10,7 @@ enum state_color {
 	COL_CYAN,    /*  0    1    1   */
 	COL_MAGENTA, /*  1    0    1   */
 	COL_WHITE,   /*  1    1    1   */
+	COL_EOL,
 };
 
 void color_tx(enum state_color color);
