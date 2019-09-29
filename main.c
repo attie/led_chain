@@ -55,7 +55,7 @@ int main(void) {
 	const uint32_t delay_len = 0x1fffff;
 
 	enum state_color color1 = COL_RED;
-	enum state_color color2 = COL_CYAN;
+	enum state_color color2 = COL_BLUE;
 
 	run_led_1(&color1);
 	run_led_2(&color2);
