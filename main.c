@@ -39,18 +39,18 @@ int main(void) {
 		color_tx(color1);
 		CHAIN_END();
 
-		for (delay = 0; delay < 0x7f; delay++) {
+		for (i = 0; i < 0x1fffff; i++) {
 			asm("nop;");
 		}
+
+		LED_SET(0);
 
 		color_inc(&color2);
 		CHAIN_ADDR_2();
 		color_tx(color2);
 		CHAIN_END();
 
-		LED_SET(0);
-
-		for (i = 0; i < 0x3fffff; i++) {
+		for (i = 0; i < 0x1fffff; i++) {
 			asm("nop;");
 		}
 
