@@ -49,20 +49,18 @@ int main(void) {
 	run_led_2(&color2);
 
 	for (;;) {
-		run_led_1(&color1);
-
 		for (delay = 0; delay < 0x1fffff; delay++) {
 			asm("nop;");
 		}
 
+		run_led_1(&color1);
 		LED_SET(0);
 
-		run_led_2(&color2);
-
 		for (delay = 0; delay < 0x1fffff; delay++) {
 			asm("nop;");
 		}
 
+		run_led_2(&color2);
 		LED_SET(1);
 	}
 }
