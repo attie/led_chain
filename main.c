@@ -24,19 +24,19 @@ void SystemInit(void) {
 }
 
 static inline void run_led_1(enum state_color *color) {
-	color_inc(color);
-
 	CHAIN_ADDR_1();
 	color_tx(*color);
 	CHAIN_END();
+
+	color_inc(color);
 }
 
 static inline void run_led_2(enum state_color *color) {
-	color_inc(color);
-
 	CHAIN_ADDR_2();
 	color_tx(*color);
 	CHAIN_END();
+
+	color_inc(color);
 }
 
 int main(void) {
