@@ -52,6 +52,7 @@ static inline void run_led_2(enum state_color *color) {
 
 int main(void) {
 	uint32_t delay;
+	const uint32_t delay_len = 0x1fffff;
 
 	enum state_color color1 = COL_RED;
 	enum state_color color2 = COL_CYAN;
@@ -60,14 +61,14 @@ int main(void) {
 	run_led_2(&color2);
 
 	for (;;) {
-		for (delay = 0; delay < 0x1fffff; delay++) {
+		for (delay = 0; delay < delay_len; delay++) {
 			asm("nop;");
 		}
 
 		run_led_1(&color1);
 		LED_SET(0);
 
-		for (delay = 0; delay < 0x1fffff; delay++) {
+		for (delay = 0; delay < delay_len; delay++) {
 			asm("nop;");
 		}
 
